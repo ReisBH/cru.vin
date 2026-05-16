@@ -1,0 +1,184 @@
+/* ─────────────────────────────────────────
+   CARDS — cru.vin
+   Shared card component styles
+───────────────────────────────────────── */
+
+/* ── Base card ──────────────────────── */
+.card {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--duration-base) var(--ease-out),
+              transform var(--duration-base) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--color-border-warm);
+  transform: translateY(-2px);
+}
+
+/* ── Wine bottle card ────────────────── */
+.wine-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.wine-card__image {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.wine-card__body {
+  padding: var(--space-5);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.wine-card__region {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wine-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.wine-card__producer {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.wine-card__score {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.wine-card__score-val {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 300;
+  color: var(--text-primary);
+}
+
+.wine-card__score-lbl {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Producer card ───────────────────── */
+.producer-card {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.producer-card__bg {
+  position: absolute;
+  inset: 0;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.producer-card:hover .producer-card__bg {
+  transform: scale(1.06);
+}
+
+.producer-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,6,4,0.85) 0%, transparent 60%);
+}
+
+.producer-card__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-6);
+}
+
+.producer-card__region {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.producer-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  color: var(--color-ivory);
+}
+
+/* ── Grape profile card ──────────────── */
+.grape-card {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: border-color var(--duration-base);
+}
+
+.grape-card:hover {
+  border-color: var(--color-border-warm);
+}
+
+.grape-card__color-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.grape-card__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.grape-card__origin {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+}
+
+.grape-card__profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.grape-card__profile span {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}

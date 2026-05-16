@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cru.Vin — Wine Intelligence Platform</title>
+  <meta name="description" content="The definitive operating system for modern wine culture. Education, tasting intelligence, and wine discovery." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Neue+Haas+Grotesk+Display+Pro:wght@400;500;700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500&family=DM+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/cards.css" />
+  <link rel="stylesheet" href="css/atlas.css" />
+  <link rel="stylesheet" href="css/tasting.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body class="theme-dark">
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════ -->
+  <header id="site-nav" class="nav" role="banner">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="Cru.Vin Home">
+        <span class="nav__logo-cru">Cru</span><span class="nav__logo-dot">.</span><span class="nav__logo-vin">Vin</span>
+      </a>
+
+      <nav class="nav__links" role="navigation" aria-label="Main navigation">
+        <a href="#atlas" class="nav__link">Atlas</a>
+        <a href="#education" class="nav__link">Academy</a>
+        <a href="#editorial" class="nav__link">Editorial</a>
+        <a href="#tasting" class="nav__link">Tasting</a>
+        <a href="#discovery" class="nav__link">Discovery</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="nav__search-btn" id="search-trigger" aria-label="Open search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <a href="#" class="nav__cta">Join Platform</a>
+        <button class="nav__hamburger" id="nav-toggle" aria-label="Toggle menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile" id="nav-mobile">
+      <a href="#atlas">Atlas</a>
+      <a href="#education">Academy</a>
+      <a href="#editorial">Editorial</a>
+      <a href="#tasting">Tasting</a>
+      <a href="#discovery">Discovery</a>
+      <a href="#" class="btn-primary">Join Platform</a>
+    </div>
+  </header>
+
+  <!-- Global Search Overlay -->
+  <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-overlay__inner">
+      <button class="search-overlay__close" id="search-close" aria-label="Close search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="search-overlay__input-wrap">
+        <svg class="search-overlay__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" class="search-overlay__input" id="search-input" placeholder="Busque uvas, regiões, produtores, aromas…" autocomplete="off" />
+      </div>
+      <div class="search-overlay__suggestions">
+        <p class="search-overlay__label">Sugestões populares</p>
+        <div class="search-overlay__tags">
+          <span class="search-tag">Borgonha</span>
+          <span class="search-tag">Nebbiolo</span>
+          <span class="search-tag">Barolo 2019</span>
+          <span class="search-tag">Chenin Blanc</span>
+          <span class="search-tag">Champagne</span>
+          <span class="search-tag">Wines for autumn</span>
+          <span class="search-tag">Volcanic reds</span>
+          <span class="search-tag">Natural wine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero__canvas" id="hero-canvas"></div>
+      <div class="hero__grain"></div>
+
+      <div class="hero__content">
+        <div class="hero__eyebrow" data-reveal>
+          <span class="hero__eyebrow-line"></span>
+          <span>Wine Intelligence Platform</span>
+        </div>
+
+        <h1 class="hero__title" data-reveal>
+          <span class="hero__title-line">O sistema operacional</span>
+          <span class="hero__title-line hero__title-italic">da cultura do vinho.</span>
+        </h1>
+
+        <p class="hero__subtitle" data-reveal>
+          Atlas interativo. Academia sommelier. Jornalismo editorial.<br />
+          Inteligência de degustação. Tudo em um único ecossistema.
+        </p>
+
+        <div class="hero__search-wrap" data-reveal>
+          <div class="hero__search" id="hero-search-trigger">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Explore uvas, regiões, produtores, aromas…</span>
+          </div>
+        </div>
+
+        <div class="hero__stats" data-reveal>
+          <div class="hero__stat">
+            <span class="hero__stat-value">12,400+</span>
+            <span class="hero__stat-label">Vinhos catalogados</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">340</span>
+            <span class="hero__stat-label">Regiões mapeadas</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-value">86</span>
+            <span class="hero__stat-label">Módulos de aprendizado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         TICKER
+    ════════════════════════════════════════ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" id="ticker-track">
+        <span>Borgonha 2022 — Safra excepcional</span>
+        <span class="ticker__dot">◆</span>
+        <span>Barolo DOCG — Nebbiolo em foco</span>
+        <span class="ticker__dot">◆</span>
+        <span>Champagne — Guia de produtores 2025</span>
+        <span class="ticker__dot">◆</span>
+        <span>Rioja Reserva — Análise de terroir</span>
+        <span class="ticker__dot">◆</span>
+        <span>Priorat — Vinhos vulcânicos</span>
+        <span class="ticker__dot">◆</span>
+        <span>Napa Valley Cabernet — Safra 2021</span>
+        <span class="ticker__dot">◆</span>
+        <span>Loire Valley — Chenin Blanc masterclass</span>
+        <span class="ticker__dot">◆</span>
+        <span>Borgonha 2022 — Safra excepcional</span>
+        <span class="ticker__dot">◆</span>
+        <span>Barolo DOCG — Nebbiolo em foco</span>
+        <span class="ticker__dot">◆</span>
+        <span>Champagne — Guia de produtores 2025</span>
+        <span class="ticker__dot">◆</span>
+        <span>Rioja Reserva — Análise de terroir</span>
+        <span class="ticker__dot">◆</span>
+        <span>Priorat — Vinhos vulcânicos</span>
+        <span class="ticker__dot">◆</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         EDITORIAL STORIES
+    ════════════════════════════════════════ -->
+    <section class="section section--editorial" id="editorial" aria-label="Editorial Stories">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__eyebrow">
+            <span class="section__eyebrow-num">01</span>
+            <span>Editorial</span>
+          </div>
+          <h2 class="section__title">Jornalismo de vinho<br /><em>em alta definição</em></h2>
+          <a href="#" class="section__link">Ver todos →</a>
+        </div>
+
+        <div class="editorial-grid">
+          <!-- Feature story -->
+          <article class="editorial-feature" data-reveal>
+            <div class="editorial-feature__image">
+              <div class="editorial-feature__image-inner" style="background: linear-gradient(135deg, #2c1810 0%, #4a2020 40%, #1a0a0a 100%);">
+                <div class="editorial-feature__overlay"></div>
+                <div class="editorial-feature__label">Destaque</div>
+              </div>
+            </div>
+            <div class="editorial-feature__content">
+              <div class="article-meta">
+                <span class="article-meta__category">Reportagem</span>
+                <span class="article-meta__divider">·</span>
+                <span class="article-meta__time">12 min de leitura</span>
+              </div>
+              <h3 class="editorial-feature__title">A reinvenção silenciosa da Borgonha: como uma nova geração de vignerons está redefinindo o Pinot Noir</h3>
+              <p class="editorial-feature__excerpt">Entre as aldeias de Gevrey-Chambertin e Morey-Saint-Denis, uma revolução tranquila transforma a lógica da appellation em algo mais pessoal — e radicalmente honesto.</p>
+              <a href="#" class="article-readmore">Ler reportagem →</a>
+            </div>
+          </article>
+
+          <!-- Side stories -->
+          <div class="editorial-side">
+            <article class="editorial-card" data-reveal>
+              <div class="editorial-card__image" style="background: linear-gradient(135deg, #0d1f2d 0%, #1a3a4a 100%);"></div>
+              <div class="editorial-card__content">
+                <div class="article-meta">
+                  <span class="article-meta__category">Terroir</span>
+                  <span class="article-meta__divider">·</span>
+                  <span class="article-meta__time">8 min</span>
+                </div>
+                <h4 class="editorial-card__title">Vulcões, xisto e sal: os solos que definem os vinhos mais tensos do sul da Espanha</h4>
+                <a href="#" class="article-readmore">Ler →</a>
+              </div>
+            </article>
+
+            <article class="editorial-card" data-reveal>
+              <div class="editorial-card__image" style="background: linear-gradient(135deg, #1a1a0d 0%, #3a3a10 100%);"></div>
+              <div class="editorial-card__content">
+                <div class="article-meta">
+                  <span class="article-meta__category">Ciência</span>
+                  <span class="article-meta__divider">·</span>
+                  <span class="article-meta__time">10 min</span>
+                </div>
+                <h4 class="editorial-card__title">Bioma microbiano e a identidade do vinho: o que a genômica revela sobre terroir</h4>
+                <a href="#" class="article-readmore">Ler →</a>
+              </div>
+            </article>
+
+            <article class="editorial-card" data-reveal>
+              <div class="editorial-card__image" style="background: linear-gradient(135deg, #1f0d1a 0%, #3a1030 100%);"></div>
+              <div class="editorial-card__content">
+                <div class="article-meta">
+                  <span class="article-meta__category">Cultura</span>
+                  <span class="article-meta__divider">·</span>
+                  <span class="article-meta__time">6 min</span>
+                </div>
+                <h4 class="editorial-card__title">O sommelier como curador: como os profissionais de serviço constroem narrativas através de cartas de vinho</h4>
+                <a href="#" class="article-readmore">Ler →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         WINE ATLAS PREVIEW
+    ════════════════════════════════════════ -->
+    <section class="section section--atlas" id="atlas" aria-label="Wine Atlas">
+      <div class="container">
+        <div class="section__header section__header--centered">
+          <div class="section__eyebrow">
+            <span class="section__eyebrow-num">02</span>
+            <span>Wine Atlas</span>
+          </div>
+          <h2 class="section__title section__title--center">Explore o mundo do vinho<br /><em>como nunca antes</em></h2>
+          <p class="section__subtitle">Mapas interativos de terroir, clima, solo e appellation. Cada região, um universo.</p>
+        </div>
+
+        <div class="atlas-preview" data-reveal>
+          <div class="atlas-map" id="atlas-map">
+            <div class="atlas-map__bg"></div>
+            <div class="atlas-map__overlay"></div>
+
+            <!-- Map pins -->
+            <div class="atlas-pin" style="left: 48%; top: 32%;" data-region="Borgonha">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Borgonha</div>
+            </div>
+            <div class="atlas-pin" style="left: 52%; top: 36%;" data-region="Bordeaux">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Bordeaux</div>
+            </div>
+            <div class="atlas-pin" style="left: 45%; top: 42%;" data-region="Rioja">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Rioja</div>
+            </div>
+            <div class="atlas-pin" style="left: 53%; top: 45%;" data-region="Toscana">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Toscana</div>
+            </div>
+            <div class="atlas-pin" style="left: 56%; top: 40%;" data-region="Piemonte">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Piemonte</div>
+            </div>
+            <div class="atlas-pin" style="left: 60%; top: 38%;" data-region="Tokaj">
+              <div class="atlas-pin__dot"></div>
+              <div class="atlas-pin__label">Tokaj</div>
+            </div>
+
+            <!-- Region info panel -->
+            <div class="atlas-info" id="atlas-info">
+              <div class="atlas-info__header">
+                <span class="atlas-info__region" id="atlas-region-name">Borgonha</span>
+                <span class="atlas-info__country">França</span>
+              </div>
+              <div class="atlas-info__stats">
+                <div class="atlas-info__stat">
+                  <span class="atlas-info__stat-val">28,000</span>
+                  <span class="atlas-info__stat-lbl">hectares</span>
+                </div>
+                <div class="atlas-info__stat">
+                  <span class="atlas-info__stat-val">84</span>
+                  <span class="atlas-info__stat-lbl">appellations</span>
+                </div>
+                <div class="atlas-info__stat">
+                  <span class="atlas-info__stat-val">Pinot Noir</span>
+                  <span class="atlas-info__stat-lbl">casta principal</span>
+                </div>
+              </div>
+              <a href="#" class="atlas-info__link">Explorar região →</a>
+            </div>
+          </div>
+
+          <div class="atlas-regions">
+            <h3 class="atlas-regions__title">Regiões em destaque</h3>
+            <ul class="atlas-regions__list" id="atlas-regions-list">
+              <li class="atlas-region-item active" data-region="Borgonha">
+                <span class="atlas-region-item__name">Borgonha</span>
+                <span class="atlas-region-item__country">França</span>
+                <span class="atlas-region-item__grape">Pinot Noir · Chardonnay</span>
+              </li>
+              <li class="atlas-region-item" data-region="Bordeaux">
+                <span class="atlas-region-item__name">Bordeaux</span>
+                <span class="atlas-region-item__country">França</span>
+                <span class="atlas-region-item__grape">Cabernet Sauvignon · Merlot</span>
+              </li>
+              <li class="atlas-region-item" data-region="Rioja">
+                <span class="atlas-region-item__name">Rioja</span>
+                <span class="atlas-region-item__country">Espanha</span>
+                <span class="atlas-region-item__grape">Tempranillo · Garnacha</span>
+              </li>
+              <li class="atlas-region-item" data-region="Toscana">
+                <span class="atlas-region-item__name">Toscana</span>
+                <span class="atlas-region-item__country">Itália</span>
+                <span class="atlas-region-item__grape">Sangiovese</span>
+              </li>
+              <li class="atlas-region-item" data-region="Piemonte">
+                <span class="atlas-region-item__name">Piemonte</span>
+                <span class="atlas-region-item__country">Itália</span>
+                <span class="atlas-region-item__grape">Nebbiolo · Barbera</span>
+              </li>
+            </ul>
+            <a href="#" class="btn-secondary">Abrir Atlas Completo →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         SOMMELIER ACADEMY
+    ════════════════════════════════════════ -->
+    <section class="section section--academy" id="education" aria-label="Sommelier Academy">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__eyebrow">
+            <span class="section__eyebrow-num">03</span>
+            <span>Sommelier Academy</span>
+          </div>
+          <h2 class="section__title">Aprenda como<br /><em>os melhores aprendem</em></h2>
+          <a href="#" class="section__link">Ver todos os cursos →</a>
+        </div>
+
+        <div class="academy-grid">
+          <div class="academy-paths" data-reveal>
+            <h3 class="academy-paths__title">Trilhas de aprendizado</h3>
+            <div class="path-list">
+              <div class="path-item path-item--active">
+                <div class="path-item__num">01</div>
+                <div class="path-item__content">
+                  <strong>Fundamentos do Vinho</strong>
+                  <span>12 módulos · Iniciante</span>
+                </div>
+                <div class="path-item__progress">
+                  <div class="path-item__bar" style="--progress: 0%"></div>
+                </div>
+              </div>
+              <div class="path-item">
+                <div class="path-item__num">02</div>
+                <div class="path-item__content">
+                  <strong>Regiões Clássicas da Europa</strong>
+                  <span>24 módulos · Intermediário</span>
+                </div>
+                <div class="path-item__progress">
+                  <div class="path-item__bar" style="--progress: 0%"></div>
+                </div>
+              </div>
+              <div class="path-item">
+                <div class="path-item__num">03</div>
+                <div class="path-item__content">
+                  <strong>Degustação às Cegas</strong>
+                  <span>18 módulos · Avançado</span>
+                </div>
+                <div class="path-item__progress">
+                  <div class="path-item__bar" style="--progress: 0%"></div>
+                </div>
+              </div>
+              <div class="path-item">
+                <div class="path-item__num">04</div>
+                <div class="path-item__content">
+                  <strong>Preparação WSET Level 3</strong>
+                  <span>32 módulos · Expert</span>
+                </div>
+                <div class="path-item__progress">
+                  <div class="path-item__bar" style="--progress: 0%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="academy-features" data-reveal>
+            <div class="academy-feature-card">
+              <div class="academy-feature-card__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <h4>Flashcards Interativos</h4>
+              <p>Memorize regiões, castas e produtores com sistemas de repetição espaçada adaptativa.</p>
+            </div>
+            <div class="academy-feature-card">
+              <div class="academy-feature-card__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h4>Simulados com Timer</h4>
+              <p>Exames cronometrados com feedback detalhado para preparação WSET e CMS.</p>
+            </div>
+            <div class="academy-feature-card">
+              <div class="academy-feature-card__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l6 3"/></svg>
+              </div>
+              <h4>Roda de Aromas</h4>
+              <p>Exercícios sensoriais e mapeamento de aromas para calibrar o seu palato.</p>
+            </div>
+            <div class="academy-feature-card">
+              <div class="academy-feature-card__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h4>Comunidade Profissional</h4>
+              <p>Grupos de estudo, batalhas de degustação às cegas e mentoria com sommeliers certificados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         AI TASTING ASSISTANT PREVIEW
+    ════════════════════════════════════════ -->
+    <section class="section section--tasting" id="tasting" aria-label="AI Tasting Assistant">
+      <div class="container">
+        <div class="tasting-split" data-reveal>
+          <div class="tasting-split__content">
+            <div class="section__eyebrow">
+              <span class="section__eyebrow-num">04</span>
+              <span>AI Tasting Intelligence</span>
+            </div>
+            <h2 class="section__title">O seu diário de<br /><em>degustação inteligente</em></h2>
+            <p class="tasting-split__text">
+              Registre notas, faça análise estrutural, rastreie a evolução do seu palato. 
+              A IA identifica aromas, estima maturidade e sugere harmonizações com base no seu histórico.
+            </p>
+            <div class="tasting-features">
+              <div class="tasting-feature">
+                <span class="tasting-feature__icon">◈</span>
+                <span>Análise estrutural automatizada</span>
+              </div>
+              <div class="tasting-feature">
+                <span class="tasting-feature__icon">◈</span>
+                <span>Identificação provável de casta e origem</span>
+              </div>
+              <div class="tasting-feature">
+                <span class="tasting-feature__icon">◈</span>
+                <span>Estimativa de janela de consumo ideal</span>
+              </div>
+              <div class="tasting-feature">
+                <span class="tasting-feature__icon">◈</span>
+                <span>Evolução visual do perfil sensorial</span>
+              </div>
+            </div>
+            <a href="#" class="btn-primary">Iniciar Degustação →</a>
+          </div>
+
+          <div class="tasting-split__visual">
+            <div class="tasting-card">
+              <div class="tasting-card__header">
+                <span class="tasting-card__wine">Barolo DOCG 2017</span>
+                <span class="tasting-card__producer">Giacomo Conterno</span>
+              </div>
+
+              <div class="tasting-radar" id="tasting-radar">
+                <canvas id="radar-canvas" width="260" height="260"></canvas>
+              </div>
+
+              <div class="tasting-card__notes">
+                <div class="tasting-note-row">
+                  <span class="tasting-note-row__label">Acidez</span>
+                  <div class="tasting-note-row__bar">
+                    <div class="tasting-note-row__fill" style="--val: 85%"></div>
+                  </div>
+                  <span class="tasting-note-row__val">Alta</span>
+                </div>
+                <div class="tasting-note-row">
+                  <span class="tasting-note-row__label">Taninos</span>
+                  <div class="tasting-note-row__bar">
+                    <div class="tasting-note-row__fill" style="--val: 90%"></div>
+                  </div>
+                  <span class="tasting-note-row__val">Firme</span>
+                </div>
+                <div class="tasting-note-row">
+                  <span class="tasting-note-row__label">Corpo</span>
+                  <div class="tasting-note-row__bar">
+                    <div class="tasting-note-row__fill" style="--val: 80%"></div>
+                  </div>
+                  <span class="tasting-note-row__val">Encorpado</span>
+                </div>
+                <div class="tasting-note-row">
+                  <span class="tasting-note-row__label">Álcool</span>
+                  <div class="tasting-note-row__bar">
+                    <div class="tasting-note-row__fill" style="--val: 72%"></div>
+                  </div>
+                  <span class="tasting-note-row__val">14%</span>
+                </div>
+              </div>
+
+              <div class="tasting-card__aromas">
+                <span>Alcatrão</span><span>Rosa Seca</span><span>Alcaçuz</span><span>Cerejas</span><span>Trufas</span>
+              </div>
+
+              <div class="tasting-card__ai">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>IA estima janela de consumo: 2026–2040</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         DISCOVERY ENGINE
+    ════════════════════════════════════════ -->
+    <section class="section section--discovery" id="discovery" aria-label="Wine Discovery">
+      <div class="container">
+        <div class="section__header section__header--centered">
+          <div class="section__eyebrow">
+            <span class="section__eyebrow-num">05</span>
+            <span>Discovery Engine</span>
+          </div>
+          <h2 class="section__title section__title--center">Descubra o vinho<br /><em>pelo seu estado de espírito</em></h2>
+          <p class="section__subtitle">Filtre por humor, estação, ocasião, textura e perfil aromático. O vinho certo para cada momento.</p>
+        </div>
+
+        <div class="discovery-moods" data-reveal>
+          <button class="mood-btn mood-btn--active" data-mood="contemplativo">
+            <span class="mood-btn__icon">🌒</span>
+            <span>Contemplativo</span>
+          </button>
+          <button class="mood-btn" data-mood="celebratorio">
+            <span class="mood-btn__icon">✨</span>
+            <span>Celebratório</span>
+          </button>
+          <button class="mood-btn" data-mood="introspectivo">
+            <span class="mood-btn__icon">🌿</span>
+            <span>Introspectivo</span>
+          </button>
+          <button class="mood-btn" data-mood="aventureiro">
+            <span class="mood-btn__icon">🗺️</span>
+            <span>Aventureiro</span>
+          </button>
+          <button class="mood-btn" data-mood="romantico">
+            <span class="mood-btn__icon">🕯️</span>
+            <span>Romântico</span>
+          </button>
+          <button class="mood-btn" data-mood="invernal">
+            <span class="mood-btn__icon">❄️</span>
+            <span>Invernal</span>
+          </button>
+        </div>
+
+        <div class="discovery-results" id="discovery-results" data-reveal>
+          <div class="discovery-result-card">
+            <div class="discovery-result-card__color" style="background: linear-gradient(160deg, #3d0e1c, #6b1525);"></div>
+            <div class="discovery-result-card__body">
+              <div class="discovery-result-card__region">Rhône · França</div>
+              <h4 class="discovery-result-card__wine">Hermitage Rouge</h4>
+              <p class="discovery-result-card__grape">Syrah</p>
+              <div class="discovery-result-card__tags">
+                <span>Defumado</span><span>Azeitona preta</span><span>Mineral</span>
+              </div>
+            </div>
+          </div>
+          <div class="discovery-result-card">
+            <div class="discovery-result-card__color" style="background: linear-gradient(160deg, #1a0a2e, #3d1560);"></div>
+            <div class="discovery-result-card__body">
+              <div class="discovery-result-card__region">Piemonte · Itália</div>
+              <h4 class="discovery-result-card__wine">Barolo Castiglione</h4>
+              <p class="discovery-result-card__grape">Nebbiolo</p>
+              <div class="discovery-result-card__tags">
+                <span>Alcatrão</span><span>Rosa</span><span>Trufas</span>
+              </div>
+            </div>
+          </div>
+          <div class="discovery-result-card">
+            <div class="discovery-result-card__color" style="background: linear-gradient(160deg, #0d1f2d, #1a3f50);"></div>
+            <div class="discovery-result-card__body">
+              <div class="discovery-result-card__region">Borgonha · França</div>
+              <h4 class="discovery-result-card__wine">Gevrey-Chambertin 1er Cru</h4>
+              <p class="discovery-result-card__grape">Pinot Noir</p>
+              <div class="discovery-result-card__tags">
+                <span>Cerejas</span><span>Terra molhada</span><span>Especiarias</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="discovery-prompt" data-reveal>
+          <p class="discovery-prompt__label">Ou descreva o que procura:</p>
+          <div class="discovery-prompt__input-wrap">
+            <input type="text" class="discovery-prompt__input" placeholder="ex: vinhos vulcânicos para o inverno abaixo de €80…" />
+            <button class="discovery-prompt__btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Descobrir
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         PLATFORM NUMBERS
+    ════════════════════════════════════════ -->
+    <section class="section section--numbers" aria-label="Platform numbers">
+      <div class="container">
+        <div class="numbers-grid" data-reveal>
+          <div class="number-item">
+            <span class="number-item__val" data-count="12400">0</span>
+            <span class="number-item__label">Vinhos catalogados</span>
+          </div>
+          <div class="number-item">
+            <span class="number-item__val" data-count="340">0</span>
+            <span class="number-item__label">Regiões mapeadas</span>
+          </div>
+          <div class="number-item">
+            <span class="number-item__val" data-count="1200">0</span>
+            <span class="number-item__label">Produtores perfilados</span>
+          </div>
+          <div class="number-item">
+            <span class="number-item__val" data-count="86">0</span>
+            <span class="number-item__label">Módulos educacionais</span>
+          </div>
+          <div class="number-item">
+            <span class="number-item__val" data-count="48000">0</span>
+            <span class="number-item__label">Notas de degustação</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CTA / JOIN
+    ════════════════════════════════════════ -->
+    <section class="section section--cta" aria-label="Join Cru.Vin">
+      <div class="container">
+        <div class="cta-block" data-reveal>
+          <div class="cta-block__eyebrow">Junte-se à plataforma</div>
+          <h2 class="cta-block__title">Eleve a sua relação<br /><em>com o vinho</em></h2>
+          <p class="cta-block__text">Acesso completo ao atlas interativo, academia sommelier, diário inteligente de degustação e jornalismo editorial de alta definição.</p>
+          <div class="cta-block__actions">
+            <a href="#" class="btn-primary btn-primary--large">Criar conta gratuita</a>
+            <a href="#" class="btn-ghost">Explorar planos →</a>
+          </div>
+          <p class="cta-block__note">14 dias grátis · Sem cartão de crédito · Cancele quando quiser</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="/" class="footer__logo">
+            <span>Cru</span><span class="footer__logo-dot">.</span><span>Vin</span>
+          </a>
+          <p class="footer__tagline">O sistema operacional<br />da cultura do vinho.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Instagram">Ig</a>
+            <a href="#" aria-label="X/Twitter">Tw</a>
+            <a href="#" aria-label="LinkedIn">Li</a>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <div class="footer__nav-col">
+            <h4>Plataforma</h4>
+            <a href="#">Wine Atlas</a>
+            <a href="#">Sommelier Academy</a>
+            <a href="#">Tasting Journal</a>
+            <a href="#">Discovery Engine</a>
+            <a href="#">Editorial</a>
+          </div>
+          <div class="footer__nav-col">
+            <h4>Aprender</h4>
+            <a href="#">Fundamentos</a>
+            <a href="#">Regiões Clássicas</a>
+            <a href="#">Degustação às Cegas</a>
+            <a href="#">WSET Prep</a>
+            <a href="#">CMS Prep</a>
+          </div>
+          <div class="footer__nav-col">
+            <h4>Empresa</h4>
+            <a href="#">Sobre</a>
+            <a href="#">Parcerias</a>
+            <a href="#">Imprensa</a>
+            <a href="#">Carreiras</a>
+            <a href="#">Contato</a>
+          </div>
+          <div class="footer__nav-col">
+            <h4>Newsletter</h4>
+            <p class="footer__newsletter-text">Análises editoriais e insights de terroir toda semana.</p>
+            <div class="footer__newsletter-form">
+              <input type="email" placeholder="seu@email.com" />
+              <button>→</button>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <span class="footer__copy">© 2025 Cru.Vin. Todos os direitos reservados.</span>
+        <div class="footer__legal">
+          <a href="#">Privacidade</a>
+          <a href="#">Termos</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/utils.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/atlas.js"></script>
+  <script src="js/tasting.js"></script>
+  <script src="js/discovery.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

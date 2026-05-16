@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tasting Journal — Cru.Vin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@200;300;400;500&family=DM+Mono:ital,wght@0,300;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/tasting-full.css" />
+</head>
+<body class="theme-dark">
+
+  <!-- NAV -->
+  <header id="site-nav" class="nav scrolled" role="banner">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <span class="nav__logo-cru">Cru</span><span class="nav__logo-dot">.</span><span class="nav__logo-vin">Vin</span>
+      </a>
+      <nav class="nav__links">
+        <a href="atlas.html" class="nav__link">Atlas</a>
+        <a href="#" class="nav__link">Academy</a>
+        <a href="#" class="nav__link">Editorial</a>
+        <a href="tasting.html" class="nav__link nav__link--active">Tasting</a>
+      </nav>
+      <div class="nav__actions">
+        <a href="#" class="nav__cta">Join Platform</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="tasting-app" id="tasting-app">
+
+    <!-- ══════════════ SIDEBAR: JOURNAL LIST ══════════════ -->
+    <aside class="tj-sidebar">
+      <div class="tj-sidebar__header">
+        <div>
+          <h1 class="tj-sidebar__title">Tasting Journal</h1>
+          <p class="tj-sidebar__meta" id="journal-count">0 notas</p>
+        </div>
+        <button class="tj-new-btn" id="btn-new-note" aria-label="Nova nota">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Nova nota</span>
+        </button>
+      </div>
+
+      <div class="tj-sidebar__search">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="journal-search" placeholder="Buscar vinhos…" />
+      </div>
+
+      <div class="tj-sidebar__filters">
+        <button class="tj-filter active" data-filter="all">Todas</button>
+        <button class="tj-filter" data-filter="red">Tinto</button>
+        <button class="tj-filter" data-filter="white">Branco</button>
+        <button class="tj-filter" data-filter="sparkling">Espumante</button>
+        <button class="tj-filter" data-filter="dessert">Sobremesa</button>
+      </div>
+
+      <div class="tj-notes-list" id="notes-list">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Palate evolution mini-chart -->
+      <div class="tj-sidebar__evolution">
+        <p class="tj-evolution__label">Evolução do palato</p>
+        <canvas id="evolution-canvas" width="280" height="80"></canvas>
+      </div>
+    </aside>
+
+    <!-- ══════════════ MAIN: NOTE EDITOR / VIEWER ══════════════ -->
+    <main class="tj-main" id="tj-main">
+
+      <!-- Empty state -->
+      <div class="tj-empty" id="tj-empty">
+        <div class="tj-empty__icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Selecione uma nota</h3>
+        <p>Escolha uma nota existente ou crie uma nova degustação.</p>
+        <button class="btn-primary" id="btn-new-empty">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nova degustação
+        </button>
+      </div>
+
+      <!-- Note editor (hidden until note selected/created) -->
+      <div class="tj-editor" id="tj-editor" style="display:none;">
+
+        <!-- Editor header -->
+        <div class="tj-editor__header">
+          <div class="tj-editor__header-left">
+            <div class="tj-wine-type-selector" id="wine-type-selector">
+              <button class="wine-type-btn active" data-type="red">Tinto</button>
+              <button class="wine-type-btn" data-type="white">Branco</button>
+              <button class="wine-type-btn" data-type="sparkling">Espumante</button>
+              <button class="wine-type-btn" data-type="rose">Rosé</button>
+              <button class="wine-type-btn" data-type="dessert">Sobremesa</button>
+            </div>
+          </div>
+          <div class="tj-editor__header-right">
+            <span class="tj-editor__date" id="note-date"></span>
+            <button class="tj-action-btn tj-action-btn--ai" id="btn-ai-analyze">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Analisar com IA
+            </button>
+            <button class="tj-action-btn" id="btn-save-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Salvar
+            </button>
+            <button class="tj-action-btn tj-action-btn--danger" id="btn-delete-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Wine identity -->
+        <div class="tj-identity">
+          <div class="tj-identity__color-preview" id="wine-color-preview"></div>
+          <div class="tj-identity__fields">
+            <input type="text" class="tj-field-wine" id="field-wine-name" placeholder="Nome do vinho…" />
+            <div class="tj-identity__row">
+              <input type="text" class="tj-field-sm" id="field-producer" placeholder="Produtor / Château" />
+              <input type="text" class="tj-field-sm" id="field-region" placeholder="Região / Appellation" />
+              <input type="text" class="tj-field-sm tj-field-year" id="field-vintage" placeholder="Safra" maxlength="4" />
+            </div>
+          </div>
+          <div class="tj-score-ring" id="score-ring">
+            <canvas id="score-canvas" width="100" height="100"></canvas>
+            <div class="tj-score-ring__inner">
+              <input type="number" class="tj-score-input" id="field-score" min="50" max="100" placeholder="—" />
+              <span class="tj-score-label">pts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tasting body -->
+        <div class="tj-body">
+
+          <!-- Left column: sliders + aromas -->
+          <div class="tj-col-left">
+
+            <!-- Visual -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Visual</h3>
+              <div class="tj-slider-group">
+                <div class="tj-slider-row" data-param="clarity">
+                  <label>Limpidez</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="90" class="tj-slider" id="sl-clarity" />
+                    <div class="tj-slider-track-fill" id="fill-clarity"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-clarity">Límpido</span>
+                </div>
+                <div class="tj-slider-row" data-param="intensity-visual">
+                  <label>Intensidade</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="70" class="tj-slider" id="sl-intensity-v" />
+                    <div class="tj-slider-track-fill" id="fill-intensity-v"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-intensity-v">Médio</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nose -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Nariz</h3>
+              <div class="tj-slider-group">
+                <div class="tj-slider-row">
+                  <label>Limpeza</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="95" class="tj-slider" id="sl-nose-clean" />
+                    <div class="tj-slider-track-fill" id="fill-nose-clean"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-nose-clean">Limpo</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Intensidade</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="80" class="tj-slider" id="sl-nose-intensity" />
+                    <div class="tj-slider-track-fill" id="fill-nose-intensity"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-nose-intensity">Pronunciado</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Desenvolvimento</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="75" class="tj-slider" id="sl-develop" />
+                    <div class="tj-slider-track-fill" id="fill-develop"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-develop">Desenvolvido</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Palate -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Paladar</h3>
+              <div class="tj-slider-group">
+                <div class="tj-slider-row">
+                  <label>Acidez</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="85" class="tj-slider" id="sl-acidity" />
+                    <div class="tj-slider-track-fill" id="fill-acidity"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-acidity">Alta</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Taninos</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="90" class="tj-slider" id="sl-tannin" />
+                    <div class="tj-slider-track-fill" id="fill-tannin"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-tannin">Firme</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Corpo</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="80" class="tj-slider" id="sl-body" />
+                    <div class="tj-slider-track-fill" id="fill-body"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-body">Encorpado</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Álcool</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="72" class="tj-slider" id="sl-alcohol" />
+                    <div class="tj-slider-track-fill" id="fill-alcohol"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-alcohol">14%</span>
+                </div>
+                <div class="tj-slider-row">
+                  <label>Persistência</label>
+                  <div class="tj-slider-wrap">
+                    <input type="range" min="0" max="100" value="88" class="tj-slider" id="sl-finish" />
+                    <div class="tj-slider-track-fill" id="fill-finish"></div>
+                  </div>
+                  <span class="tj-slider-val" id="val-finish">Longa</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Conclusão</h3>
+              <div class="tj-conclusion-grid">
+                <div class="tj-field-group">
+                  <label>Qualidade</label>
+                  <select class="tj-select" id="field-quality">
+                    <option>Excepcional</option>
+                    <option selected>Superior</option>
+                    <option>Muito bom</option>
+                    <option>Bom</option>
+                    <option>Aceitável</option>
+                  </select>
+                </div>
+                <div class="tj-field-group">
+                  <label>Potencial de guarda</label>
+                  <select class="tj-select" id="field-aging">
+                    <option>Beber agora</option>
+                    <option>1–3 anos</option>
+                    <option selected>5–10 anos</option>
+                    <option>10–20 anos</option>
+                    <option>20+ anos</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column: radar + aromas + notes -->
+          <div class="tj-col-right">
+
+            <!-- Radar -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Perfil estrutural</h3>
+              <div class="tj-radar-wrap">
+                <canvas id="tj-radar" width="280" height="280"></canvas>
+              </div>
+            </div>
+
+            <!-- Aroma wheel -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Aromas detectados</h3>
+              <div class="tj-aroma-categories">
+                <!-- Populated by JS -->
+              </div>
+              <div class="tj-selected-aromas" id="selected-aromas">
+                <!-- Selected aroma tags -->
+              </div>
+            </div>
+
+            <!-- Free text notes -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Notas livres</h3>
+              <textarea class="tj-textarea" id="field-notes" placeholder="Descreva o vinho com suas próprias palavras…" rows="5"></textarea>
+            </div>
+
+            <!-- Food pairing -->
+            <div class="tj-section">
+              <h3 class="tj-section__title">Harmonização</h3>
+              <div class="tj-pairing-grid" id="pairing-grid">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- AI Analysis panel -->
+        <div class="tj-ai-panel" id="ai-panel" style="display:none;">
+          <div class="tj-ai-panel__header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span>Análise de IA</span>
+            <button class="tj-ai-panel__close" id="ai-panel-close">×</button>
+          </div>
+          <div class="tj-ai-panel__body" id="ai-panel-body">
+            <!-- AI content -->
+          </div>
+        </div>
+
+      </div><!-- /tj-editor -->
+    </main>
+
+    <!-- ══════════════ RIGHT PANEL: ANALYTICS ══════════════ -->
+    <aside class="tj-analytics" id="tj-analytics">
+      <div class="tj-analytics__header">
+        <h2 class="tj-analytics__title">Analytics</h2>
+        <button class="tj-analytics__toggle" id="analytics-toggle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+        </button>
+      </div>
+
+      <div class="tj-analytics__body" id="analytics-body">
+
+        <!-- Summary stats -->
+        <div class="tj-stat-row">
+          <div class="tj-mini-stat">
+            <span class="tj-mini-stat__val" id="stat-total">0</span>
+            <span class="tj-mini-stat__lbl">Total de notas</span>
+          </div>
+          <div class="tj-mini-stat">
+            <span class="tj-mini-stat__val" id="stat-avg">—</span>
+            <span class="tj-mini-stat__lbl">Pontuação média</span>
+          </div>
+          <div class="tj-mini-stat">
+            <span class="tj-mini-stat__val" id="stat-top-region">—</span>
+            <span class="tj-mini-stat__lbl">Região favorita</span>
+          </div>
+        </div>
+
+        <!-- Type distribution -->
+        <div class="tj-analytics__section">
+          <h4 class="tj-analytics__section-title">Por tipo</h4>
+          <div class="tj-type-bars" id="type-bars"></div>
+        </div>
+
+        <!-- Top regions -->
+        <div class="tj-analytics__section">
+          <h4 class="tj-analytics__section-title">Regiões degustadas</h4>
+          <div class="tj-region-list" id="analytics-regions"></div>
+        </div>
+
+        <!-- Score distribution -->
+        <div class="tj-analytics__section">
+          <h4 class="tj-analytics__section-title">Distribuição de pontuação</h4>
+          <canvas id="score-dist-canvas" width="240" height="80"></canvas>
+        </div>
+
+        <!-- Top aromas -->
+        <div class="tj-analytics__section">
+          <h4 class="tj-analytics__section-title">Aromas mais detectados</h4>
+          <div class="tj-top-aromas" id="top-aromas"></div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div><!-- /tasting-app -->
+
+  <script src="js/utils.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/tasting-full.js"></script>
+</body>
+</html>

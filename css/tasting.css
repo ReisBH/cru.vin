@@ -1,0 +1,202 @@
+/* ─────────────────────────────────────────
+   TASTING — cru.vin
+───────────────────────────────────────── */
+
+.section--tasting {
+  background: var(--color-black-warm);
+  overflow: hidden;
+}
+
+.section--tasting::before {
+  content: '';
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(107,21,37,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Layout ─────────────────────────── */
+.tasting-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.tasting-split__content {
+  max-width: 520px;
+}
+
+.tasting-split__text {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: var(--space-6) 0 var(--space-8);
+}
+
+.tasting-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.tasting-feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.tasting-feature__icon {
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Tasting card ────────────────────── */
+.tasting-card {
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  max-width: 340px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.tasting-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), transparent, rgba(107,21,37,0.1));
+  z-index: -1;
+}
+
+.tasting-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+}
+
+.tasting-card__wine {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.tasting-card__producer {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Radar chart ─────────────────────── */
+.tasting-radar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+
+#radar-canvas {
+  width: 200px;
+  height: 200px;
+}
+
+/* ── Bar notes ───────────────────────── */
+.tasting-card__notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.tasting-note-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 56px;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.tasting-note-row__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tasting-note-row__bar {
+  height: 3px;
+  background: var(--color-surface-4);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.tasting-note-row__fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--color-burgundy), var(--color-gold));
+  border-radius: var(--radius-pill);
+  transition: width 1.2s var(--ease-slow);
+}
+
+.tasting-note-row__val {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+
+/* ── Aromas ──────────────────────────── */
+.tasting-card__aromas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-4);
+}
+
+.tasting-card__aromas span {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.06em;
+}
+
+/* ── AI badge ────────────────────────── */
+.tasting-card__ai {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+}
+
+/* ── Responsive ─────────────────────── */
+@media (max-width: 900px) {
+  .tasting-split {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
